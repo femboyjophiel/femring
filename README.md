@@ -3,7 +3,7 @@ Website for the femboy webring
 
 # How to join
 
-Fork this repository and add your site to sites.json/
+Fork this repository and add your site to sites.json
 
 ```
 "Example Site":{ 
