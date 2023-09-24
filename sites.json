@@ -1,10 +1,17 @@
 {
     "Example Site 1": {
-        "link": "https://example.com",
-        "verified": "09/24/2023"
+        "link": "example.com",
+        "verified": "09/24/2023",
+        "name": "Jane Doe"
     },
     "Example Site 2": {
-        "link": "https://anotherexample.com",
-        "verified": "09/24/2023"
+        "link": "anotherexample.com",
+        "verified": "09/24/2023",
+        "name": "John Doe"
+    },
+    "Femboy Finder": {
+        "link": "femboyfinder.neocities.org",
+        "verified": "09/24/2023",
+        "name": "Femboy Jophiel"
     }
 }
