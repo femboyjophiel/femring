@@ -1,34 +1,38 @@
-  // Define the URL of your JSON file
-        const jsonFileUrl = 'sites.json';
+const jsonFileUrl = 'sites.json';
+const container = document.getElementById('siteContainer');
 
-        // Get the container element where you want to add the anchor elements
-        const container = document.getElementById('siteContainer');
+fetch(jsonFileUrl)
+  .then(response => response.json())
+  .then(d => {
+    for (const sN in d) {
+      if (d.hasOwnProperty(sN)) {
 
-        fetch(jsonFileUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Loop through the sites and create list items with anchor elements
-                for (const siteName in data) {
-                    if (data.hasOwnProperty(siteName)) {
-                        const site = data[siteName];
+        const li = document.createElement('li');
+        const div = document.createElement('div');
+        const p = document.createElement('p');
+        const s = d[sN];
+        const a1 = aMake(sN, s.link);
+        const a2 = aMake(s.link, s.link);
 
-                        // Create a list item
-                        const li = document.createElement('li');
+        function aMake(t, h) {
+          const a = document.createElement('a'); 
+          a.textContent = t;
+          a.href = "https://" + h;
+          a.target = '_blank';
+          return a;
+        }
 
-                        // Create an anchor element
-                        const anchor = document.createElement('a');
-                        anchor.textContent = siteName;
-                        anchor.href = site.link;
-                        anchor.target = '_blank'; // Open in a new tab
+        li.appendChild(div);
+        div.appendChild(p);
+        p.textContent = d[sN].name;
+        div.appendChild(a1);
+        div.appendChild(a2);
 
-                        // Append the anchor element to the list item
-                        li.appendChild(anchor);
 
-                        // Append the list item to the unordered list
-                        container.appendChild(li);
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        container.appendChild(li);
+      }
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
