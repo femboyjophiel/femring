@@ -1,0 +1,35 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+@font-face {
+  font-family: 'notsans';
+  src: url('notsans.woff2') format('woff2');
+}
+:root {
+  --round: 2px;
+  --blue: #dbeaff;
+  --yellow: #fffaea;
+  --pink: #fceafa;
+  --brown: #35281e;
+  --titlepink: #eeaaff;
+  --lightpink: #fef5ff;
+  --borderouter: #ffe5c4;
+  --outlineouter: #bd6562;
+  --outlineinner: #ffbbaa;
+  --anchorshadow: 0 0 1px #ffbeff, 0 0 2px #ffb6ff, 0 0 4px #ffafff, 0 0 8px #eb9bff, 0 0 12px #e381ff;
+  --bggradient: linear-gradient(180deg, var(--blue) 0%, var(--yellow) 61%, var(--pink) 81%);
+  --purple: #a14cff;
+  --hoverpink: #ffdaff;
+  --yellowfocus: #ffebe4;
+
+}
+
+ul {
+  margin: 0 auto;
+  border: 2px solid var(--brown);
+  border-radius: var(--round);
+  height: 40%;
+  width: 40%;
+  font-family: 'notsans';
+}
