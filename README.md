@@ -6,8 +6,7 @@ Website for the femboy webring
 Fork this repository and add your site to sites.json/
 
 ```
-{ 
-  "name": "Example Site 1",  
+"Example Site":{ 
   "link": "https://example.com",  
   "verified": MM/DD/YYY  
 },
