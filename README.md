@@ -8,7 +8,8 @@ Fork this repository and add your site to sites.json
 ```
 "Example Site":{ 
   "link": "https://example.com",  
-  "verified": MM/DD/YYY  
+  "verified": "MM/DD/YYYY",
+  "name": "Bobert"
 },
 
 ```
