@@ -4,7 +4,7 @@ fetch('sites.json')
     .then(data => {
         const siteList = document.getElementById('site-list');
 
-        // Loop through each site in the JSON
+        // Loop through each site in the JSON object
         for (const siteName in data) {
             if (data.hasOwnProperty(siteName)) {
                 const siteInfo = data[siteName];
