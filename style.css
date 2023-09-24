@@ -2,10 +2,12 @@ html {
   height: 100%;
   width: 100%;
 }
+
 @font-face {
   font-family: 'notsans';
   src: url('notsans.woff2') format('woff2');
 }
+
 :root {
   --round: 2px;
   --blue: #dbeaff;
@@ -14,10 +16,10 @@ html {
   --brown: #35281e;
   --titlepink: #eeaaff;
   --lightpink: #fef5ff;
-  --borderouter: #ffe5c4;
-  --outlineouter: #bd6562;
-  --outlineinner: #ffbbaa;
-  --anchorshadow: 0 0 1px #ffbeff, 0 0 2px #ffb6ff, 0 0 4px #ffafff, 0 0 8px #eb9bff, 0 0 12px #e381ff;
+  --borderouter: 1px solid #ffe5c4;
+  --outlineouter: 1px solid#bd6562;
+  --outlineinner: 1px solid#ffbbaa;
+  --anchorshadow: 0 0 1px #d98cd9, 0 0 2px #ec93ec, 0 0 4px #ffafff, 0 0 8px #eb9bff, 0 0 12px #e381ff;
   --bggradient: linear-gradient(180deg, var(--blue) 0%, var(--yellow) 61%, var(--pink) 81%);
   --purple: #a14cff;
   --hoverpink: #ffdaff;
@@ -29,7 +31,110 @@ ul {
   margin: 0 auto;
   border: 2px solid var(--brown);
   border-radius: var(--round);
-  height: 40%;
-  width: 40%;
+  width: 40vw;
+  min-width: 484px;
   font-family: 'notsans';
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  grid-row-gap: 2px;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  min-height: 35px;
+  position: relative;
+  height: auto;
+  /* Allow each row to have its own height based on content */
+  width: 100%;
+  box-shadow: 0 2px 0 var(--brown);
+  background-color: var(--yellow);
+}
+
+li:nth-child(even) {
+  background-color: var(--blue);
+}
+
+li>div {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  display: grid;
+  grid-template-columns: 25% 23% 33%;
+  /* Adjust the number of columns as needed */
+
+  align-items: center;
+
+}
+
+div>a,
+div>p {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  text-decoration: none;
+
+}
+
+
+div {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  /* Center the middle column */
+  grid-column-gap: 10px;
+  /* Adjust the gap between columns as needed */
+  align-items: center;
+
+}
+
+
+@media screen and (max-width: 500px) {
+  div>a:nth-child(even) {
+    display: none;
+  }
+
+  ul {
+    min-width: 370px;
+  }
+
+  li>div {
+    grid-template-columns: 40% 50%;
+  }
+}
+
+a:link {
+  color: var(--purple);
+
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--brown);
+  background-color: transparent;
+  text-decoration: none;
+
+}
+
+a:hover {
+  color: var(--hoverpink);
+  text-shadow: var(--anchorshadow);
+}
+
+a:active {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+    text-shadow: var(--anchorshadow);
 }
