@@ -2,12 +2,12 @@
     {
         "name": "Example Site 1",
         "link": "https://example.com",
-        "verified": true
+        "verified": 09-24/2023
     },
     {
         "name": "Another Example Site",
         "link": "https://anotherexample.com",
-        "verified": false
+        "verified": 09-24-2023
     }
     // Add more sites here
 ]
