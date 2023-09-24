@@ -1,29 +1,34 @@
-// Read the sites.json file
-fetch('sites.json')
-    .then(response => response.json())
-    .then(data => {
-        const siteList = document.getElementById('site-list');
+  // Define the URL of your JSON file
+        const jsonFileUrl = 'sites.json';
 
-        // Loop through each site in the JSON object
-        for (const siteName in data) {
-            if (data.hasOwnProperty(siteName)) {
-                const siteInfo = data[siteName];
-                const siteLink = siteInfo.link;
+        // Get the container element where you want to add the anchor elements
+        const container = document.getElementById('siteContainer');
 
-                // Create an anchor element for the site
-                const siteAnchor = document.createElement('a');
-                siteAnchor.href = siteLink;
-                siteAnchor.textContent = siteName;
+        fetch(jsonFileUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Loop through the sites and create list items with anchor elements
+                for (const siteName in data) {
+                    if (data.hasOwnProperty(siteName)) {
+                        const site = data[siteName];
 
-                // Create a list item to contain the anchor
-                const listItem = document.createElement('li');
-                listItem.appendChild(siteAnchor);
+                        // Create a list item
+                        const li = document.createElement('li');
 
-                // Append the list item to the site list
-                siteList.appendChild(listItem);
-            }
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching and parsing sites.json:', error);
-    });
+                        // Create an anchor element
+                        const anchor = document.createElement('a');
+                        anchor.textContent = siteName;
+                        anchor.href = site.link;
+                        anchor.target = '_blank'; // Open in a new tab
+
+                        // Append the anchor element to the list item
+                        li.appendChild(anchor);
+
+                        // Append the list item to the unordered list
+                        container.appendChild(li);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
