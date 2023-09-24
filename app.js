@@ -1,30 +1,29 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const webringList = document.getElementById("webring-list");
+// Read the sites.json file
+fetch('sites.json')
+    .then(response => response.json())
+    .then(data => {
+        const siteList = document.getElementById('site-list');
 
-    // Fetch the websites from the JSON file
-    fetch("sites.json")
-        .then((response) => response.json())
-        .then((data) => {
-            // Loop through the websites and add them as anchor elements
-            data.forEach((site) => {
-                const listItem = document.createElement("li");
-                const link = document.createElement("a");
-                link.href = site.link;
-                link.textContent = site.name;
+        // Loop through each site in the JSON
+        for (const siteName in data) {
+            if (data.hasOwnProperty(siteName)) {
+                const siteInfo = data[siteName];
+                const siteLink = siteInfo.link;
 
-                // Add a "Verified" badge if verified
-                if (site.verified) {
-                    const verifiedBadge = document.createElement("span");
-                    verifiedBadge.textContent = "Verified";
-                    verifiedBadge.classList.add("verified-badge");
-                    listItem.appendChild(verifiedBadge);
-                }
+                // Create an anchor element for the site
+                const siteAnchor = document.createElement('a');
+                siteAnchor.href = siteLink;
+                siteAnchor.textContent = siteName;
 
-                listItem.appendChild(link);
-                webringList.appendChild(listItem);
-            });
-        })
-        .catch((error) => {
-            console.error("Error fetching data:", error);
-        });
-});
+                // Create a list item to contain the anchor
+                const listItem = document.createElement('li');
+                listItem.appendChild(siteAnchor);
+
+                // Append the list item to the site list
+                siteList.appendChild(listItem);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching and parsing sites.json:', error);
+    });
