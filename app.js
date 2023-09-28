@@ -14,10 +14,10 @@ fetch(jsonFileUrl)
         const a1 = aMake(sN, s.link);
         const a2 = aMake(s.link, s.link);
 
-        function aMake(t, h) {
+        function aMake(text, href) {
           const a = document.createElement('a'); 
-          a.textContent = t;
-          a.href = "https://" + h;
+          a.textContent = text;
+          a.href = "https://" + href;
           a.target = '_blank';
           return a;
         }
@@ -36,3 +36,22 @@ fetch(jsonFileUrl)
   .catch(error => {
     console.error('Error fetching data:', error);
   });
+
+function setThemePreference() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+}
+
+setThemePreference();
+
+
+function toggleTheme() {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+}
