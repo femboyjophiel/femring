@@ -1,17 +1,17 @@
 {
-    "Example Site 1": {
-        "link": "example.com",
-        "verified": "09/24/2023",
-        "name": "Jane Doe"
-    },
-    "Example Site 2": {
-        "link": "anotherexample.com",
-        "verified": "09/24/2023",
-        "name": "John Doe"
+    "Femboy Database": {
+        "link": "fbdb.neocities.org",
+        "verified": "09/27/2023",
+        "name": "Tabby"
     },
     "Femboy Finder": {
         "link": "femboyfinder.neocities.org",
         "verified": "09/24/2023",
         "name": "Jophiel"
-    }
+    },
+  "William Is Funny": {
+    "link": "williamisfunny.neocities.org",
+    "verified": "09/27/2023",
+    "name": "William"
+  }
 }
