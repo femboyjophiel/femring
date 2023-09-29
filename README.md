@@ -19,7 +19,7 @@ Remember, in JSON the last of any key/pair should not have a comma, but the ones
 
 Once you do this, add this line of code somewhere visible on the homepage of your website: 
 ```
-   <iframe title="femboy webring" style='border-radius:25px; border: 2px solid deeppink' frameborder="no" height='70px' width='250px' src='https://femring.neocities.org/meow?user=[YOUR-NAME]'></iframe>
+   <iframe title="femboy webring" style='border-radius:25px; border: 2px solid deeppink' frameborder="no" height='70px' width='250px' src='https://femring.neocities.org/meow?user=YOUR-NAME'></iframe>
 ```
 You can change the values to whatever you want but this is what I recommend. 
 
