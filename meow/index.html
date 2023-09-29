@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>meow</title>
+  <style>
+    html,
+    body,
+    div {
+      height: 100%;
+    }
+
+    * {
+      margin: auto;
+    }
+
+    div {
+      background: linear-gradient(160deg, #AD1A6B, #9823e7, #AD1A6B);
+      font-family: cursive, -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", Roboto, Noto, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    a {
+      color: pink;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    p {
+      color: deeppink;
+      text-decoration: underline;
+    }
+  </style>
+  <base target="_top">
+</head>
+
+<body>
+  <div>
+    <a href="/back" referrerpolicy="origin-when-cross-origin">
+      <img src="/back.gif" alt="previous page">
+    </a>
+
+    <a href="/">Femboys are: <p id='switch'>Cute</p></a>
+    <script>
+      let a = ["Cute", "Cool", "Slaying", "Literally Me", "Real", "Moe", "Great", "The Future", "Amazing", "Pretty"]
+      let i = 0;
+      setInterval(function () {
+        if (i > 9) {
+          i = 0;
+        }
+        document.getElementById('switch').innerHTML = a[i];
+        i++;
+      }, 4000)
+
+    </script>
+    <a href="/next" referrerpolicy="origin-when-cross-origin">
+      <img src="/next.gif" alt="next page">
+    </a>
+  </div>
+
+</body>
+
+</html>
