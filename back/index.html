@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+</head>
+<body>
+    <h1>You should be redirected shortly</h1>
+
+    <script>
+        // Get the referrer URL
+        const referrer = document.referrer;
+        const urlParams = new URLSearchParams(referrer.split('?')[1]);
+        const username = urlParams.get("user");
+
+        const jsonFileUrl = '/sites.json';
+
+        fetch(jsonFileUrl)
+            .then(response => response.json())
+            .then(data => {
+                console.log("JSON data:", data);
+
+                if (!username) {
+                    // If the user has no username, redirect to the first user
+                    const firstSite = data[Object.keys(data)[0]];
+                    window.location.href = "https://" + firstSite.link;
+                } else {
+                    // Find the user based on the "name" attribute
+                    let userToRedirect = null;
+                    let previousUser = null;
+                    let isFirstUser = true;
+
+                    for (const siteName in data) {
+                        if (data.hasOwnProperty(siteName)) {
+                            const site = data[siteName];
+                            if (site.name === username) {
+                                if (previousUser) {
+                                    userToRedirect = previousUser.link;
+                                } else if (isFirstUser) {
+                                    const lastSite = data[Object.keys(data)[Object.keys(data).length - 1]];
+                                    userToRedirect = lastSite.link;
+                                }
+                                break;
+                            }
+                            previousUser = site;
+                            isFirstUser = false;
+                        }
+                    }
+
+                    console.log("userToRedirect:", userToRedirect);
+
+                    if (userToRedirect !== null) {
+                        // Redirect based on the user's "name"
+                        window.location.href = "https://" + userToRedirect;
+                    } else {
+                        // Handle the case where the username does not exist
+                        console.error('Username not found in the JSON data');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+</html>
