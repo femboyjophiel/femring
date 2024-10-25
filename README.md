@@ -9,7 +9,7 @@ Website for the femboy webring
 
 ```
 "Example Site":{ 
-  "link": "https://example.com",  
+  "link": "example.com",  
   "verified": "MM/DD/YYYY",
   "name": "Bobert"
 },
