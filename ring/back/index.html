@@ -49,7 +49,10 @@ fetch(jsonFileUrl)
         }
 
         // Determine previous site
-        const prevIndex = currentIndex === 0 ? siteKeys.length - 1 : currentIndex - 1;
+        let prevIndex = currentIndex === 0 ? siteKeys.length - 1 : currentIndex - 1;
+        if (prevIndex < 0) {
+        prevIndex = siteKeys.length - 1;
+        }
         const prevSite = data[siteKeys[prevIndex]];
 
         console.log("Redirecting to previous site:", prevSite.link);
