@@ -9,65 +9,56 @@
     <h1>You should be redirected shortly</h1>
 
     <script>
-        // Get the referrer URL
-        const referrer = document.referrer;
-        const urlParams = new URLSearchParams(referrer.split('?')[1]);
-        const username = urlParams.get("user");
+       // Get the referrer URL
+const referrer = document.referrer;
+const jsonFileUrl = '/sites.json';
 
-        const jsonFileUrl = '/sites.json';
+fetch(jsonFileUrl)
+    .then(response => response.json())
+    .then(data => {
+        console.log("JSON data:", data);
 
-        fetch(jsonFileUrl)
-            .then(response => response.json())
-            .then(data => {
-                console.log("JSON data:", data);
+        const siteKeys = Object.keys(data);
 
-                if (!username) {
-                    // If the user has no username, redirect to the first user
-                    const firstSite = data[Object.keys(data)[0]];
-                    window.location.href = "https://" + firstSite.link;
-                } else {
-                    // Find the user based on the "name" attribute
-                    let userToRedirect = null;
-                    let nextUser = null;
-                    let isLastUser = true;
+        if (!referrer) {
+            // No referrer, redirect to random site
+            const randomKey = siteKeys[Math.floor(Math.random() * siteKeys.length)];
+            window.location.href = "https://" + data[randomKey].link;
+            return;
+        }
 
-                    for (const siteName in data) {
-                        if (data.hasOwnProperty(siteName)) {
-                            const site = data[siteName];
-                            if (site.name === username) {
-                                const siteNames = Object.keys(data);
-                                const currentIndex = siteNames.indexOf(siteName);
-                                if (currentIndex !== -1) {
-                                    const nextIndex = (currentIndex + 1) % siteNames.length;
-                                    userToRedirect = data[siteNames[nextIndex]].link;
-                                }
-                                isLastUser = false;
-                                break;
-                            }
-                            nextUser = site;
-                        }
-                    }
+        // Extract host from referrer
+        let refHost;
+        try {
+            refHost = new URL(referrer).hostname;
+        } catch (e) {
+            console.warn('Invalid referrer URL, redirecting to random site');
+            const randomKey = siteKeys[Math.floor(Math.random() * siteKeys.length)];
+            window.location.href = "https://" + data[randomKey].link;
+            return;
+        }
 
-                    if (isLastUser && userToRedirect === null) {
-                        // If it's the last user, redirect to the first user
-                        const siteNames = Object.keys(data);
-                        userToRedirect = data[siteNames[0]].link;
-                    }
+        // Find the index of the site that matches the referrer host
+        let currentIndex = siteKeys.findIndex(key => data[key].link.includes(refHost));
+        
+        if (currentIndex === -1) {
+            // Referrer not in JSON, redirect random
+            const randomKey = siteKeys[Math.floor(Math.random() * siteKeys.length)];
+            window.location.href = "https://" + data[randomKey].link;
+            return;
+        }
 
-                    console.log("userToRedirect:", userToRedirect);
+        // Determine previous site
+        const nextIndex = currentIndex === 0 ? siteKeys.length - 1 : currentIndex + 1;
+        const nextSite = data[siteKeys[prevIndex]];
 
-                    if (userToRedirect !== null) {
-                        // Redirect based on the user's "name"
-                        window.location.href = "https://" + userToRedirect;
-                    } else {
-                        // Handle the case where the username does not exist
-                        console.error('Username not found in the JSON data');
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        console.log("Redirecting to previous site:", prevSite.link);
+        window.location.href = "https://" + prevSite.link;
+
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
     </script>
 </body>
 </html>
