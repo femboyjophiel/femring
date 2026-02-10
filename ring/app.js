@@ -11,7 +11,7 @@ fetch(jsonFileUrl)
         const div = document.createElement('div');
         const p = document.createElement('p');
         const s = d[sN];
-        const a1 = aMake(sN, s.link.split(".").splice(0, 1, s.link.split(".").length-1);
+        const a1 = aMake(sN, s.link.split(".").splice(0, 1, "/" + s.link.split(".").length-1);
         const a2 = aMake(s.link, s.link);
 
         function aMake(text, href) {
