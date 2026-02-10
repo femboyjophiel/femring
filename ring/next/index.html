@@ -49,8 +49,11 @@ fetch(jsonFileUrl)
         }
 
         // Determine previous site
-        const nextIndex = currentIndex === 0 ? siteKeys.length - 1 : currentIndex + 1;
-        const nextSite = data[siteKeys[prevIndex]];
+        let prevIndex = currentIndex === 0 ? siteKeys.length - 1 : currentIndex - 1;
+        if (prevIndex >= siteKeys.length) {
+        prevIndex = 0;
+        }
+        const prevSite = data[siteKeys[prevIndex]];
 
         console.log("Redirecting to previous site:", prevSite.link);
         window.location.href = "https://" + prevSite.link;
@@ -59,8 +62,6 @@ fetch(jsonFileUrl)
     .catch(error => {
         console.error('Error fetching data:', error);
     });
-
-
     </script>
 </body>
 </html>
