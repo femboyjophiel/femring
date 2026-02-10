@@ -9,8 +9,9 @@
     <h1>You should be redirected shortly</h1>
 
     <script>
-       // Get the referrer URL
-const referrer = document.referrer;
+     // Get the current site's hostname
+const currentHost = window.location.hostname; // e.g., "mysite.host.org"
+
 const jsonFileUrl = '/sites.json';
 
 fetch(jsonFileUrl)
@@ -20,29 +21,18 @@ fetch(jsonFileUrl)
 
         const siteKeys = Object.keys(data);
 
-        if (!referrer) {
-            // No referrer, redirect to random site
+        if (!currentHost) {
+            // Safety fallback: redirect to a random site if hostname not found
             const randomKey = siteKeys[Math.floor(Math.random() * siteKeys.length)];
             window.location.href = "https://" + data[randomKey].link;
             return;
         }
 
-        // Extract host from referrer
-        let refHost;
-        try {
-            refHost = new URL(referrer).hostname;
-        } catch (e) {
-            console.warn('Invalid referrer URL, redirecting to random site');
-            const randomKey = siteKeys[Math.floor(Math.random() * siteKeys.length)];
-            window.location.href = "https://" + data[randomKey].link;
-            return;
-        }
-
-        // Find the index of the site that matches the referrer host
-        let currentIndex = siteKeys.findIndex(key => data[key].link.includes(refHost));
+        // Find the index of the site that matches the current host
+        let currentIndex = siteKeys.findIndex(key => data[key].link.includes(currentHost));
         
         if (currentIndex === -1) {
-            // Referrer not in JSON, redirect random
+            // Current site not in JSON, redirect to a random site
             const randomKey = siteKeys[Math.floor(Math.random() * siteKeys.length)];
             window.location.href = "https://" + data[randomKey].link;
             return;
@@ -59,6 +49,7 @@ fetch(jsonFileUrl)
     .catch(error => {
         console.error('Error fetching data:', error);
     });
+
     </script>
 </body>
 </html>
