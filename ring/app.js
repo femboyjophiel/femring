@@ -11,7 +11,12 @@ fetch(jsonFileUrl)
         const div = document.createElement('div');
         const p = document.createElement('p');
         const s = d[sN];
-        const a1 = aMake(sN, s.link.split('.').slice(1).join('.') + '/site/' + s.link.split('.')[0]);
+        let a1;
+        if(s.link.split(".")[1] == "neocities") {
+        a1 = aMake(sN, s.link.split('.').slice(1).join('.') + '/site/' + s.link.split('.')[0]);
+        } else {
+        a1 = aMake(sN, s.link); 
+        }
         const a2 = aMake(s.link, s.link);
 
         function aMake(text, href) {
